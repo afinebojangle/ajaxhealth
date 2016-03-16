@@ -1,0 +1,38 @@
+<ul class="nav nav-tabs" role="tab-list">
+    <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#home" role="tab">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#med_util" role="tab">Medical Utilization</a>
+    </li>
+</ul>
+</br>
+
+<div class="tab-content">
+
+    <div class="tab-pane active" id="home" role="tabpanel">
+        <div class="card">
+            <div class="card-header card-inverse bg-danger">
+                <h5>Surveys</h5>
+            </div>
+            <div class="card-block">
+                <p>This is the surveys section of the app. We use surveys to track non-clincal information about our patients on a self report basis.</p>
+                <p>There is a tab for each of the types of surveys we ask you to complete. On each surveys tab you can see a graph which shows your historical answers and how they change over time. We also calculate how your answer compare to others in your area.</p>
+                <p>Currently have one survey in place, the Medical Utilization Survey. We use this to get a general idea of each patient's usage of the medical system. We can take the results of this survey and start to get an idea of whehter a patient's utiliztion matches their health. Are sick people avoid the doctor, or are healthy people going to the doctor too often?</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="tab-pane" id="med_util" role="tabpanel">
+        <div class="card">
+            <div class="card-header card-inverse bg-danger">
+                <h5>Medical Utilization Survey</h5>
+            </div>
+            <div class="card-block">
+                <p>Stats and graphs and stuff</p>
+                <p> avg health = <%= avg_health %></p>
+            </div>
+        </div>
+    </div>
+    
+</div>

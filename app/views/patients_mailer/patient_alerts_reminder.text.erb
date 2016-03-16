@@ -1,0 +1,19 @@
+<%= @user.first_name %>
+
+====================================================
+
+We noticed that have some outstanding alerts.
+
+We use this data to bring you better healthcare, so it is imporant that you visit:
+
+<%= link_to "the alerts dashboard", @url %> and fix the following issues:
+      
+<% @alerts.each do |a| %>
+    <%= "#{a[:alert]}" "\r\n" %>
+<% end %>
+
+Thanks for joining and have a great day!
+
+
+Please do not reply to this message. Nobody is listening to this account.
+

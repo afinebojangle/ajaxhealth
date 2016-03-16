@@ -1,0 +1,9 @@
+<div class="list-group">
+    <a href="<%= patient_alerts_path %>" class="list-group-item">
+        <span class="label label-default label-pill pull-xs-right"><%= current_patient.get_patient_alerts.count %></span>
+        <i class="fa fa-bell"></i> Alerts
+    </a>
+    <a href="<%= patient_surveys_path %>" class="list-group-item">
+        <i class="fa fa-file-text"></i> Surveys
+    </a>
+</div>

@@ -1,0 +1,24 @@
+<div class="card">
+    <div class="card-header card-inverse bg-danger">
+        <H5>Alerts</H5>
+    </div>
+    <% if @alerts.empty? %>
+        <div class = "card-block">
+            <p><strong>Everything Looks Good! Check Back Later. </strong></p>
+        </div>
+    <% else %>
+        <div class="card-block">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Due Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%= render partial: "alert", collection: @alerts %> 
+                </tbody>
+            </table>
+        </div>
+    <% end %>
+</div>

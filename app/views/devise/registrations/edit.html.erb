@@ -1,0 +1,119 @@
+<div class="col-md-6 col-md-offset-3">
+  </br>
+  <h2>Edit Your Information</h2>
+
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= devise_error_messages! %>
+
+      <div id="user-edit-accordion" role="tablist" aria-multiselectable="true">
+        <div class="card" role="tab" id="account-info-heading">
+          <div class="card-header card-inverse bg-danger">
+            <a class="card-link h5" data-toggle="collapse" data-parent="#user-edit-accordion" href="#account-info-form" aria-expanded="true" aria-controls="account-info-form" id="account-info-link">
+              Account Info  <i class="fa fa-plus" id="account-info-icon"></i>
+            </a>
+            </br>
+            <small>Change Account Email or Password</small>
+          </div>
+          <div class="card-block collapse" id="account-info-form" role="tabpanel" aria-labelledby="account-info-heading">
+            <%= f.input :email, autofocus: true %>
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+            <% end %>
+            <%= f.input :password, label: "New Password", autocomplete: "off", placeholder: "leave blank if you don't want to change it" %>
+            <%= f.input :password_confirmation, autocomplete: "off", placeholder: "leave blank if you don't want to change it" %>
+          </div>
+        </div>
+
+
+        <div class="card" role="tab" id="personal-info-heading">
+          <div class="card-header card-inverse bg-danger">
+            <a class="card-link h5" id="personal-info-link" data-toggle="collapse" data-parent="#user-edit-accordion" href="#personal-info-form" aria-expanded="true" aria-controls="personal-info-form">
+              Personal Info <i class="fa fa-plus" id="personal-info-icon"></i>
+            </a>
+            </br>
+            <small>Change Name, SSN, Address, Phone Number</small>
+          </div>
+          <div class="card-block collapse" id="personal-info-form" role="tabpanel" aria-labelledby="personal-info-heading">
+            <%= f.input :first_name, label: "First Name" %>
+            <%= f.input :last_name, label: "Last Name" %>
+            <%= f.input :phone, label: "Contact Phone" %>
+            <%= f.input :ssn, label: "Social Security Number" %>
+            <%= f.input :addr1, label: "Address" %>
+            <%= f.input :addr2, label: "Address Line 2" %>
+            <%= f.input :city, label: "city" %>
+            <%= f.input :state, label: "State Abreviation" %>
+            <%= f.input :zip, label: "5 Digit Zip" %>
+          </div>
+        </div>
+
+        <div class="card" role="tab" id="insurance-info-heading">
+          <div class="card-header card-inverse bg-danger">
+            <a class="card-link h5" id="insurance-info-link" data-toggle="collapse" data-parent="#user-edit-accordion" href="#insurance-info-form" aria-expanded="true" aria-controls="insurance-info-form">
+              Insurance Info <i class="fa fa-plus" id="insurance-info-icon"></i>
+            </a>
+            </br>
+            <small>Change Member ID, Group ID, Effective Date</small>
+          </div>
+          <div class="card-block collapse" id="insurance-info-form" role="tabpanel" aria-labelledby="insurance-info-heading">
+            <%= f.input :member_id, label: 'Member ID' %>
+            <%= f.input :group_id, label: 'Group ID' %>
+            <%= f.input :effective_date, as: :date, html5: true %>
+          </div>
+        </div>
+
+
+        <div class="card" role="tab" id="demographic-info-heading">
+          <div class="card-header card-inverse bg-danger">
+            <a class="card-link h5" id="demographic-info-link" data-toggle="collapse" data-parent="#user-edit-accordion" href="#demographic-info-form" aria-expanded="true" aria-controls="demographic-info-form">
+              Demographic Info <i class="fa fa-plus" id="demographic-info-icon"></i>
+            </a>
+            </br>
+            <small>Change DOB, Gender, Race</small>
+          </div>
+          <div class="card-block collapse" id="demographic-info-form" role="tabpanel" aria-labelledby="demographic-info-heading">
+            <%= f.input :dob, as: :date, html5: true, label: 'Date of Birth' %>
+            <%= f.input :gender, label: 'Gender:', collection: ["Male", "Female"], as: :radio_buttons, item_wrapper_class: 'inline' %>
+            <%= f.input :race, label: 'Race', collection: ["White", "Black", "Hispanic", "Asian", "Native American", "Pacific Islander"] %>
+
+
+          </div>
+        </div>
+
+
+
+
+      </div>
+
+        <%= f.input :current_password, autocomplete: "off", placeholder: "we need your current password to confirm your changes" %>
+
+        <%= f.button :submit, "Update", class: "btn-danger" %>
+
+  <% end %>
+<!-- maybe we want this back in the future -->
+<!--  <h3>Cancel my account</h3> -->
+
+<!--  <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p> -->
+
+  <%= link_to "Back", :back %>
+
+</div>
+<script>
+
+  $('#account-info-link').click(function() {
+    $('#account-info-icon').toggleClass('fa-plus fa-minus');
+  });
+
+  $('#personal-info-link').click(function() {
+    $('#personal-info-icon').toggleClass('fa-plus fa-minus');
+  });
+
+  $('#insurance-info-link').click(function() {
+    $('#insurance-info-icon').toggleClass('fa-plus fa-minus');
+  });
+
+  $('#demographic-info-link').click(function() {
+    $('#demographic-info-icon').toggleClass('fa-plus fa-minus');
+  });
+
+
+</script>

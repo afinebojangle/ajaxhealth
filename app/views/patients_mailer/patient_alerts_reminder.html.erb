@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= @user.first_name %></h1>
+    <p>
+      We noticed that have some outstanding alerts.
+      We use this data to bring you better healthcare, so it is imporant that you visit:
+      <%= link_to "the alerts dashboard", @url %> and fix the following issues: </p>
+      
+      <% @alerts.each do |a| %>
+          <p><%= "#{a[:alert]}" %></p>
+        <% end %>
+
+    <p>Thanks for joining and have a great day!</p>
+    
+    <p><small>Please do not reply to this message. Nobody is listening to this account.</small></p>
+  </body>
+</html>
