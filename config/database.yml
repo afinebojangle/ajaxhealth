@@ -16,8 +16,9 @@ test:
   database: ajaxhealth_test
 
 production:
-  <<: *default
-  database: ajaxhealth_production
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
   
 development:
   <<: *default
