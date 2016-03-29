@@ -10,6 +10,7 @@ gem 'sequel-devise'
 gem 'sequel-devise-generators'
 gem 'devise'
 gem 'puma'
+gem 'faker'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

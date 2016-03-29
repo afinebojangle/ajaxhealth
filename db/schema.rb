@@ -1,5 +1,21 @@
 Sequel.migration do
   change do
+    create_table(:patient_measure_types) do
+      primary_key :id
+      column :measure_type, "text"
+      column :description, "text"
+      column :created_at, "timestamp without time zone"
+      column :updated_at, "timestamp without time zone"
+    end
+    
+    create_table(:patient_measure_units) do
+      primary_key :id
+      column :uom, "text"
+      column :description, "text"
+      column :created_at, "timestamp without time zone"
+      column :updated_at, "timestamp without time zone"
+    end
+    
     create_table(:patients) do
       primary_key :id
       column :email, "text", :default=>"", :null=>false
@@ -47,6 +63,19 @@ Sequel.migration do
       column :version, "integer", :default=>0, :null=>false
     end
     
+    create_table(:patient_measures) do
+      primary_key :id
+      column :due, "date"
+      column :completed_date, "date"
+      column :completed, "boolean"
+      column :value, "double precision"
+      column :created_at, "timestamp without time zone"
+      column :updated_at, "timestamp without time zone"
+      foreign_key :patient_id, :patients, :key=>[:id]
+      foreign_key :patient_measure_type_id, :patient_measure_types, :key=>[:id]
+      foreign_key :patient_measure_unit_id, :patient_measure_units, :key=>[:id]
+    end
+    
     create_table(:patient_tasks) do
       primary_key :id
       column :description, "text"
@@ -63,6 +92,6 @@ end
 Sequel.migration do
   change do
     self << "SET search_path TO \"$user\", public"
-    self << "INSERT INTO \"schema_info\" (\"version\") VALUES (2)"
+    self << "INSERT INTO \"schema_info\" (\"version\") VALUES (3)"
   end
 end

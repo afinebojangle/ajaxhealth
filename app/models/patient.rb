@@ -11,6 +11,7 @@ class Patient < Sequel::Model
          :confirmable, :lockable, :timeoutable
          
   one_to_many :patient_tasks
+  one_to_many :patient_measures
   
   after_create :create_patient_account_task
   
