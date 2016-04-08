@@ -65,9 +65,7 @@ Sequel.migration do
     
     create_table(:patient_measures) do
       primary_key :id
-      column :due, "date"
       column :completed_date, "date"
-      column :completed, "boolean"
       column :value, "double precision"
       column :created_at, "timestamp without time zone"
       column :updated_at, "timestamp without time zone"
@@ -92,6 +90,6 @@ end
 Sequel.migration do
   change do
     self << "SET search_path TO \"$user\", public"
-    self << "INSERT INTO \"schema_info\" (\"version\") VALUES (3)"
+    self << "INSERT INTO \"schema_info\" (\"version\") VALUES (4)"
   end
 end
