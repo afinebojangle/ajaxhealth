@@ -65,7 +65,9 @@ Sequel.migration do
     
     create_table(:patient_measures) do
       primary_key :id
+      column :due, "date"
       column :completed_date, "date"
+      column :completed, "boolean"
       column :value, "double precision"
       column :created_at, "timestamp without time zone"
       column :updated_at, "timestamp without time zone"

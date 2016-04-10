@@ -1,8 +1,5 @@
 Sequel.migration do
-  up do
-    
-    DB = PatientMeasure.db
-    
+  up do    
     view_definition = DB[:patient_measures].
       select{[
         Sequel.as(:patient_measures__completed_date, :date),
@@ -18,10 +15,10 @@ Sequel.migration do
       join(:patient_measure_units, :id => :patient_measures__patient_measure_unit_id).
       join(:patients, :id => :patient_measures__patient_id).
       sql
-      
+
       create_view(:patient_measure_view, view_definition, :materialized => true)
   end
-  
+
   down do
     drop_view(:patient_measure_view, :materialized => true)
   end

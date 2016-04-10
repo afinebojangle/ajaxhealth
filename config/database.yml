@@ -22,4 +22,5 @@ production:
   
 development:
   <<: *default
+  host: localhost
   database: ajaxhealth_development
