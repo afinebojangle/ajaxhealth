@@ -59,6 +59,48 @@ Sequel.migration do
       index [:unlock_token], :unique=>true
     end
     
+    create_table(:providers) do
+      primary_key :id
+      column :email, "text", :default=>"", :null=>false
+      column :encrypted_password, "text", :default=>"", :null=>false
+      column :reset_password_token, "text"
+      column :reset_password_sent_at, "text"
+      column :remember_created_at, "timestamp without time zone"
+      column :sign_in_count, "integer", :default=>0, :null=>false
+      column :current_sign_in_at, "timestamp without time zone"
+      column :last_sign_in_at, "timestamp without time zone"
+      column :current_sign_in_ip, "text"
+      column :last_sign_in_ip, "text"
+      column :confirmation_token, "text"
+      column :confirmed_at, "timestamp without time zone"
+      column :confirmation_sent_at, "timestamp without time zone"
+      column :unconfirmed_email, "text"
+      column :failed_attempts, "integer", :default=>0, :null=>false
+      column :unlock_token, "text"
+      column :locked_at, "timestamp without time zone"
+      column :first_name, "text"
+      column :last_name, "text"
+      column :phone, "text"
+      column :ssn, "text"
+      column :addr1, "text"
+      column :addr2, "text"
+      column :city, "text"
+      column :state, "text"
+      column :zip, "integer"
+      column :npi, "text"
+      column :taxonomy, "text"
+      column :licence, "text"
+      column :licence_expiration, "date"
+      column :dea, "text"
+      column :created_at, "timestamp without time zone"
+      column :updated_at, "timestamp without time zone"
+      
+      index [:confirmation_token], :unique=>true
+      index [:email], :unique=>true
+      index [:reset_password_token], :unique=>true
+      index [:unlock_token], :unique=>true
+    end
+    
     create_table(:schema_info) do
       column :version, "integer", :default=>0, :null=>false
     end
@@ -92,6 +134,6 @@ end
 Sequel.migration do
   change do
     self << "SET search_path TO \"$user\", public"
-    self << "INSERT INTO \"schema_info\" (\"version\") VALUES (4)"
+    self << "INSERT INTO \"schema_info\" (\"version\") VALUES (5)"
   end
 end

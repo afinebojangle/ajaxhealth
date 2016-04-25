@@ -20,6 +20,13 @@ class Patient < Sequel::Model
  
 
   
+  def age
+    Date.today.year - self.dob.year
+  end
+  
+  def full_name
+    "#{self.first_name} #{self.last_name}"
+  end
   
   
   def create_patient_account_task

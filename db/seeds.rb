@@ -1,9 +1,24 @@
-#create an admin
+#create an admin patient
 
 admin = Patient.new(
-    email:    'admin@example.com',
+    email:    'adminpat@example.com',
     password: 'helloworld',
-    password_confirmation: 'helloworld'
+    password_confirmation: 'helloworld',
+    first_name: 'Patient',
+    last_name: 'McGee'
+    )
+
+admin.skip_confirmation!
+admin.save
+
+#create an admin provider
+
+admin = Patient.new(
+    email:    'adminpro@example.com',
+    password: 'helloworld',
+    password_confirmation: 'helloworld',
+    first_name: 'Provider',
+    last_name: 'McGee'
     )
 
 admin.skip_confirmation!

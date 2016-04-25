@@ -32,5 +32,6 @@ module Ajaxhealth
     # config.i18n.default_locale = :de
     
     config.autoload_paths << Rails.root.join('lib')
+    config.web_console.development_only = false
   end
 end

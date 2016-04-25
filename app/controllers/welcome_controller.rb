@@ -15,6 +15,8 @@ class WelcomeController < ApplicationController
   def route_user
     if current_patient
       redirect_to patient_dashboard_path
+    elsif current_provider
+      redirect_to provider_dashboard_path
     end
   end
   

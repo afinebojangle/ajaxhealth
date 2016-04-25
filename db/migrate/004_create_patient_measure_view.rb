@@ -15,6 +15,20 @@ Sequel.migration do
       join(:patient_measure_units, :id => :patient_measures__patient_measure_unit_id).
       join(:patients, :id => :patient_measures__patient_id).
       sql
+      
+      view2 = DB.run "select a.id,
+        a.completed_date,
+        b.measure_type as type,
+        b.description,
+        a.value,
+        c.uom,
+        d.dob,
+        d.gender,
+        d.race
+      from patient_measures as a
+        inner join patient_measure_types as b on (a.patient_measure_type_id = b.id)
+        inner join patient_measure_units as c on (a.patient_measure_unit_id = c.id)
+        inner join patients d on (a.patient_id = d.id)"
 
       create_view(:patient_measure_view, view_definition, :materialized => true)
   end

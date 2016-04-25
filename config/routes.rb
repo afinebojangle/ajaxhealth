@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
     
     devise_for :patients
+    devise_for :providers
     
    
     namespace :provider do
-        get '/' => 'dashboard#dashboard'
+        get '/dashboard' => 'dashboard#dashboard'
+        resources :patients do
+            resources :patient_measures
+        end
+        get '/account' => 'provider#account'
     end
   
     namespace :admin do

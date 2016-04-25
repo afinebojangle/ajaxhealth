@@ -1,0 +1,16 @@
+<div class="container">
+  <h4> Enter a New Measure for <%= @patient.full_name %></h4>
+
+  <%= simple_form_for @measure, url: provider_patient_patient_measures_path, html: { method: :post } do |f| %>
+    <%= f.input :patient_measure_type_id, collection: @types, label_method: :measure_type, value_method: :id, label: "Measure Type", include_blank: false %>
+    <%= f.input :value %>
+    <%= f.input :patient_measure_unit_id, collection: @units, label_method: :uom, value_method: :id, label: "Unit of Measure", include_blank: false %>
+    <%= f.input :completed, as: :boolean, checked_value: true, unchecked_value: false %>
+    <%= f.input :completed_date, as: :string, placeholder: "MM/DD/YYYY" %>
+    <%= f.button :submit, "Create Patient Measure", class: "btn-danger" %>
+  <% end %>
+
+</div>
+
+
+

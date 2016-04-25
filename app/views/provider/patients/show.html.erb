@@ -1,0 +1,6 @@
+<h4><%= @patient.full_name %></h4>
+<p>Age: <%= @patient.age %></p>
+<p>Gender: <%= @patient.gender %></p>
+<p>Race: <%= @patient.race %></p>
+<p>Member Since: <%= @patient.created_at.strftime("%D") %></p>
+<%= link_to "Create New Measure", new_provider_patient_patient_measure_path(@patient), class: "btn btn-danger" %>
