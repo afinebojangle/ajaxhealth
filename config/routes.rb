@@ -12,9 +12,6 @@ Rails.application.routes.draw do
         get '/account' => 'provider#account'
     end
   
-    namespace :admin do
-        get '/' => 'dashboard#dashboard'
-    end
   
     namespace :patient do
         get '/dashboard' => 'dashboard#dashboard'

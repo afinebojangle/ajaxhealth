@@ -1,6 +1,8 @@
 class Provider::PatientMeasuresController < ApplicationController
   layout "provider"
   
+  before_action :authenticate_provider!
+  
   def new
     @patient = Patient[params[:patient_id]]
     @measure = PatientMeasure.new(:patient_id => @patient.id)

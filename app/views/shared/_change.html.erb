@@ -4,11 +4,12 @@
     </div>
     <div class="card-block">
         <ul>
+            <li><strong>4/27/16 - Created Course of Observation tables.</strong> There is a table for the course, the observations, and scheduled measures.</li>
             <li><strong>4/25/16 - Added a Patient Measure Form</strong> and linked it to the patient#show. Now we can take measurements!</li>
             <li><strong>4/12/2016 - Created Provider Model</strong> We had patients but nobody to take care of them. No longer! Started to build out the provider section of the app.</li>
             <li><strong>4/8/2016 - Created Patient Measure View.</strong> This will make it easier to query the measures. Since we used the EAV architechture, each measure query will require several joins. The materialized view will do the heavy lifting for us on the join front.</li>
             <li><strong>3/29/2016 - Created Patient Measures.</strong> Modeled patient measures using EAV database design. Created some seed data for the "Max Effort Mile" measure so we can start the statistics portion.</li>
-            <li><strong>3/18/2016 - Redeployed App with New Backend.</strong> Sure it took several weeks but we are finally back live with the new back end. Thing area already better, even if everything looks the same on the outside.</li>
+            <li><strong>3/18/2016 - Redeployed App with New Backend.</strong> Sure it took several weeks but we are finally back live with the new back end. Things area already better, even if everything looks the same on the outside.</li>
             <li><strong>3/15/2016 - Added Solution Section</strong> This section talks about how we are going to solve the problems we talked about in the problem section.</li>
             <li><strong>3/10/2016 - Added Problem Section</strong> This section talks about the problems in the healthcare industry that we are trying to solve. Check it out!</li>
             <li><strong>3/7/2016 - Bested Devise!!!</strong> I understand fully that nobody cares about this but me, but I finally worked out all the kinks of switching to a new ORM. Using Sequel with Devise (The authentication library we use, it handles sign in and sign out, creating accounts, sessions, etc.) was much harder than expected.
@@ -19,7 +20,7 @@
             <li><strong>3/1/2016 - Entirely New App!</strong> Things may look similar to last month but we have been hard at work switching out the backend. We had been using MongoDB as our database as the schema-less nature of document stores
             seemed like a good fit to the kind of data we care about. However after testing this technology I decided it was not going to work out. First, MongoDB pre-allocates huge DB files for small amounts of data. Our development database has almost 1 GB in files
             despite a very small actual dataset. Two, MongoDB has no joins! While it was going to be great for our more flexible data stores, every organization has relational data. How to handle it well in MongoDB?
-            Schema-less is a misnomer! While it is true that there was no defined schema in MongoDB, you ended up creating a schema at the model level. Granted it is really easy to add fields since it only has to be handled at the model level,
+            Because schema-less in the context of a Rails app is a misnomer! While it is true that there was no defined schema in MongoDB, you ended up creating a schema at the model level. Granted it is really easy to add fields since it only has to be handled at the model level,
              but in the end you have a schema anyway. If I am going to have to make a schema no matter what, might as well have a relational database. Lastly, PostgreSQL also does "schema-less" tables, as well
             as being a battle tested relational database.  In combination with the Sequel ORM we can do anything with PostgreSQL that could be done in MongoDB, and all kinds of things that could not be done as well.</li>
             <li><strong>3/1/2016 - Started Change Log</strong> We are making lots of changes and we thought some of you might like to know what is going on.</li>

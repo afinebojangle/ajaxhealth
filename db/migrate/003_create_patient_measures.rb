@@ -4,6 +4,7 @@ Sequel.migration do
             primary_key :id
             
             Date :completed_date
+            Boolean :completed, :default => false
             Float :value
             
             DateTime :created_at

@@ -105,11 +105,21 @@ Sequel.migration do
       column :version, "integer", :default=>0, :null=>false
     end
     
+    create_table(:courses) do
+      primary_key :id
+      foreign_key :patient_id, :patients, :key=>[:id]
+      column :description, "text"
+      column :start_date, "date"
+      column :end_date, "date"
+      column :completed, "boolean"
+      column :created_at, "timestamp without time zone"
+      column :updated_at, "timestamp without time zone"
+    end
+    
     create_table(:patient_measures) do
       primary_key :id
-      column :due, "date"
       column :completed_date, "date"
-      column :completed, "boolean"
+      column :completed, "boolean", :default=>false
       column :value, "double precision"
       column :created_at, "timestamp without time zone"
       column :updated_at, "timestamp without time zone"
@@ -129,11 +139,28 @@ Sequel.migration do
       column :created_at, "timestamp without time zone"
       column :updated_at, "timestamp without time zone"
     end
+    
+    create_table(:observations) do
+      primary_key :id
+      foreign_key :course_id, :courses, :key=>[:id]
+      column :description, "text"
+      column :frequency, "text"
+      column :created_at, "timestamp without time zone"
+      column :updated_at, "timestamp without time zone"
+    end
+    
+    create_table(:scheduled_measures) do
+      primary_key :id
+      foreign_key :observation_id, :observations, :key=>[:id]
+      foreign_key :patient_measure_type_id, :patient_measure_types, :key=>[:id]
+      column :created_at, "timestamp without time zone"
+      column :updated_at, "timestamp without time zone"
+    end
   end
 end
 Sequel.migration do
   change do
     self << "SET search_path TO \"$user\", public"
-    self << "INSERT INTO \"schema_info\" (\"version\") VALUES (5)"
+    self << "INSERT INTO \"schema_info\" (\"version\") VALUES (6)"
   end
 end
