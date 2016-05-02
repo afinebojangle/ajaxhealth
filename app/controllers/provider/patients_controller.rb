@@ -9,5 +9,6 @@ class Provider::PatientsController < ApplicationController
   
   def show
     @patient = Patient[params[:id]]
+    @courses = Course.where(patient_id: @patient.id).all
   end
 end

@@ -1,0 +1,12 @@
+<div class="container">
+  <h4>Create a new course for <%= @patient.full_name %></h4>
+  
+  <%= simple_form_for @course, url: provider_patient_courses_path, html: { method: :post } do |f| %>
+    <%= f.input :description %>
+    <%= f.input :start_date, as: :string, placeholder: "MM/DD/YYYY" %>
+    <%= f.input :end_date, as: :string, placeholder: "MM/DD/YYYY" %>
+    <%= f.button :submit, "Create New Course", class: "btn-danger" %>
+  <% end %>
+  
+  
+</div>

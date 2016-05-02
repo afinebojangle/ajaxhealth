@@ -11,6 +11,7 @@ gem 'sequel-devise-generators'
 gem 'devise'
 gem 'puma'
 gem 'faker'
+ruby '2.3.0'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

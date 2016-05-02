@@ -3,4 +3,8 @@
 <p>Gender: <%= @patient.gender %></p>
 <p>Race: <%= @patient.race %></p>
 <p>Member Since: <%= @patient.created_at.strftime("%D") %></p>
+<hr>
+<h5>Courses:</h5>
+<%= render partial: "provider/patients/course", collection: @courses %>
 <%= link_to "Create New Measure", new_provider_patient_patient_measure_path(@patient), class: "btn btn-danger" %>
+<%= link_to "Create New Course", new_provider_patient_course_path(@patient), class: "btn btn-danger" %>

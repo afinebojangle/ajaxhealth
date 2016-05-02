@@ -13,7 +13,7 @@ admin.save
 
 #create an admin provider
 
-admin = Patient.new(
+admin = Provider.new(
     email:    'adminpro@example.com',
     password: 'helloworld',
     password_confirmation: 'helloworld',
@@ -124,5 +124,41 @@ patients.each do |p|
     end
 end
 
+#seed courses
+
+patients.each do |p|
+  c = Course.new(
+      patient_id:       p.id,
+      start_date:       Faker::Date.between(1.year.ago, Date.today),
+      end_date:         Faker::Date.between(Date.today, Date.today + 1.year),
+      description:      "Weight Loss",
+      completed:        false
+      )
+  c.save
+end
+
+#seed observations
+
+courses = Course.map(:id)
+
+obs = {
+    :'5' => "Once",
+    :'4' => "Monthly",
+    :'1' => "Bi-Monthly",
+    :'2' => "Monthly" 
+}
+
+
+courses.each do |c|
+  obs.each do |key, value|
+    ob = Observation.new(
+      course_id:       c,
+      measure_type_id: key,
+      frequency:    value
+      )
+    ob.save
+  end
+end
+  
 
 

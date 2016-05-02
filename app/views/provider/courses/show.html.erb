@@ -1,0 +1,11 @@
+<h4>Course Detail: <%= @course.description %> </h4>
+<p><%= "#{@patient.full_name}, #{@patient.age} year old #{@patient.race} #{@patient.gender}" %></p>
+<p><%= "From #{@course.start_date} to #{@course.end_date}" %></p>
+<hr>
+<h4>Observations</h4>
+
+
+<%= link_to "Add an Observation", new_provider_course_observation_path(@course), class: 'btn btn-danger' %>
+
+
+

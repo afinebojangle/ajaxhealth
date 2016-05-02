@@ -7,7 +7,7 @@ Sequel.migration do
       String :description
       Date :start_date
       Date :end_date
-      Boolean :completed
+      Boolean :completed, :default => false
       
       DateTime :created_at
       DateTime :updated_at
@@ -16,8 +16,8 @@ Sequel.migration do
     create_table(:observations) do
       primary_key :id
       foreign_key :course_id, :courses
+      foreign_key :patient_measure_type_id, :patient_measure_types
       
-      String :description
       String :frequency
       
       DateTime :created_at
@@ -28,6 +28,8 @@ Sequel.migration do
       primary_key :id
       foreign_key :observation_id, :observations
       foreign_key :patient_measure_type_id, :patient_measure_types
+      
+      Date :scheduled_date
       
       DateTime :created_at
       DateTime :updated_at
