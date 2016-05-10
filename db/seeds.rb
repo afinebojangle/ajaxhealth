@@ -128,7 +128,7 @@ end
 
 patients.each do |p|
   c = Course.new(
-      patient_id:       p.id,
+      patient_id:       p,
       start_date:       Faker::Date.between(1.year.ago, Date.today),
       end_date:         Faker::Date.between(Date.today, Date.today + 1.year),
       description:      "Weight Loss",
@@ -139,26 +139,26 @@ end
 
 #seed observations
 
-courses = Course.map(:id)
+#courses = Course.map(:id)
 
-obs = {
-    :'5' => "Once",
-    :'4' => "Monthly",
-    :'1' => "Bi-Monthly",
-    :'2' => "Monthly" 
-}
+#obs = {
+#    :'5' => "Once",
+#    :'4' => "Monthly",
+#    :'1' => "Bi-Monthly",
+#    :'2' => "Monthly" 
+#}
 
 
-courses.each do |c|
-  obs.each do |key, value|
-    ob = Observation.new(
-      course_id:       c,
-      measure_type_id: key,
-      frequency:    value
-      )
-    ob.save
-  end
-end
+#courses.each do |c|
+#  obs.each do |key, value|
+#    ob = Observation.new(
+#      course_id:       c,
+#      measure_type_id: key,
+#      frequency:    value
+#      )
+#    ob.save
+#  end
+#end
   
 
 

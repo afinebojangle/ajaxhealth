@@ -10,12 +10,11 @@ class Provider::ObservationsController < ApplicationController
   end
   
   def create
-    @patient = Patient[params[:patient_id]]
-    @course = Course[params[:id]]
+    @course = Course[params[:course_id]]
     @observation = Observation.new(course_observation_params)
     if @observation.save
       flash[:notice] = "Observation Added."
-      redirect_to provider_patient_course_path(@patient, @course)
+      redirect_to provider_course_path(@course.id)
     else
       flash[:error] = "There Was a Problem Adding an Observation. Please Try Again."
       redirect_to provider_patient_course_path(@patient, @course)
@@ -28,7 +27,8 @@ class Provider::ObservationsController < ApplicationController
   private
   
   def course_observation_params
-    params.require(:observation).permit(:course_id, :measure_type_id, :frequency)
+    params[:observation][:course_id] = @course.id
+    params.require(:observation).permit(:course_id, :patient_measure_type_id, :frequency)
   end
   
 end
