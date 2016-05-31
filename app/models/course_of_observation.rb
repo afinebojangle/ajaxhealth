@@ -10,4 +10,6 @@ class CourseOfObservation
     @course.id
   end
   
+  
+  
 end

@@ -19,25 +19,25 @@ Sequel.migration do
       foreign_key :patient_measure_type_id, :patient_measure_types
       
       String :frequency
+      Date :start_date
+      Date :end_date
       
       DateTime :created_at
       DateTime :updated_at
     end
     
-    create_table(:scheduled_measures) do
-      primary_key :id
-      foreign_key :observation_id, :observations
-      foreign_key :patient_measure_type_id, :patient_measure_types
+    alter_table(:measures){add_foreign_key :course_id, :courses}
+    
       
-      Date :scheduled_date
-      
-      DateTime :created_at
-      DateTime :updated_at
-    end
+    
+
   end
   
   down do
-    drop_table(:courses, :observations, :scheduled_measures)
+    drop_table(:courses, :observations)
+    
+    drop_column :measures, :course_id
+
   end
 end
       

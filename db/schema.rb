@@ -145,15 +145,8 @@ Sequel.migration do
       foreign_key :course_id, :courses, :key=>[:id]
       foreign_key :patient_measure_type_id, :patient_measure_types, :key=>[:id]
       column :frequency, "text"
-      column :created_at, "timestamp without time zone"
-      column :updated_at, "timestamp without time zone"
-    end
-    
-    create_table(:scheduled_measures) do
-      primary_key :id
-      foreign_key :observation_id, :observations, :key=>[:id]
-      foreign_key :patient_measure_type_id, :patient_measure_types, :key=>[:id]
-      column :scheduled_date, "date"
+      column :start_date, "date"
+      column :end_date, "date"
       column :created_at, "timestamp without time zone"
       column :updated_at, "timestamp without time zone"
     end
