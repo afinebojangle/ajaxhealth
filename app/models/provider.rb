@@ -1,4 +1,5 @@
 class Provider < Sequel::Model
+  #provider model
   plugin :devise
   plugin :timestamps, :update_on_create => true
   # Include default devise modules. Others available are:

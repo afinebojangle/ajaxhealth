@@ -4,11 +4,9 @@ class Provider::CoursesController < ApplicationController
   before_action :authenticate_provider!
   
   def show
-    @course = Course[params[:id]]
-    @patient = Patient[@course.patient_id]
-    @observations = Observation.where(course_id: @course.id).all
-    @observation = Observation.new
+    @course = CourseOfObservation.new(params[:id])
     @types = PatientMeasureType.select(:id, :measure_type).all
+    @observation = Observation.new
   end
   
   def new

@@ -7,9 +7,9 @@ Rails.application.routes.draw do
     namespace :provider do
         get '/dashboard' => 'dashboard#dashboard'
         resources :patients do
-            resources :patient_measures, only: [:new, :create, :update]
             resources :courses, only: [:new, :create]
         end
+        resources :patient_measures, only: [:new, :create, :update]
         resources :courses, only: [:show, :update] do
           resources :observations
         end

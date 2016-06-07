@@ -1,13 +1,15 @@
 class Observation < Sequel::Model
+  #This model stores data about observations in course of observations.
   plugin :timestamps, :update_on_create => true
   plugin :validation_helpers
 
   many_to_one :courses
+  one_to_one :observation_measures
   
   def validate
     super
     validates_presence [:course_id, :frequency, :patient_measure_type_id, :start_date, :end_date]
-    errors.add(:frequency, 'not a valid frequency') unless frequency.in?(Observation.allowed_frequencies)
+    errors.add(:frequency, 'is not a valid frequency') unless frequency.in?(Observation.allowed_frequencies)
   end
   
   def created_on

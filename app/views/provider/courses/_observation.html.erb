@@ -1,1 +1,10 @@
-<li><strong><%= "#{observation.type}" %>:</strong>  Measured <%= observation.frequency %>. <small>Added on: <%= observation.created_on %></small></li>
+<tr>
+  <td><%= observation.type %></td>
+  <td><%= observation.frequency %></td>
+  <td><%= observation.start_date %></td>
+  <td><%= observation.end_date %></td>
+  <td><%= observation.to_intervals %></td>
+  <td>Placeholder</td>
+  <td><i class="fa fa-bar-chart"></i></td>
+  <td><i class="fa fa-pencil"></i></td>
+</tr>

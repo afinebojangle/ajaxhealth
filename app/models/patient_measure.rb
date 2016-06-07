@@ -1,8 +1,17 @@
 class PatientMeasure < Sequel::Model
+   #patient measures are the basis of our whole system. This model stores their data in 
    plugin :timestamps, :update_on_create => true
    
    one_to_one :patient_measure_type
    one_to_one :patient_measure_unit
+   many_to_one :patients
+   
+   
+   
+   def validate
+     super
+     validates_presence [:value, :patient_id, :patient_measure_type_id, :patient_measure_unit_id]
+   end
    
    
     

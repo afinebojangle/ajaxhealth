@@ -150,11 +150,17 @@ Sequel.migration do
       column :created_at, "timestamp without time zone"
       column :updated_at, "timestamp without time zone"
     end
+    
+    create_table(:observation_measures) do
+      primary_key :id
+      foreign_key :observation_id, :observations, :key=>[:id]
+      foreign_key :patient_measure_id, :patient_measures, :key=>[:id]
+    end
   end
 end
 Sequel.migration do
   change do
     self << "SET search_path TO \"$user\", public"
-    self << "INSERT INTO \"schema_info\" (\"version\") VALUES (6)"
+    self << "INSERT INTO \"schema_info\" (\"version\") VALUES (7)"
   end
 end

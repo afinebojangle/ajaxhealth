@@ -26,8 +26,6 @@ Sequel.migration do
       DateTime :updated_at
     end
     
-    alter_table(:measures){add_foreign_key :course_id, :courses}
-    
       
     
 

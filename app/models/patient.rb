@@ -1,4 +1,5 @@
 class Patient < Sequel::Model
+  #Patient model
   plugin :devise
   plugin :timestamps, :update_on_create => true
   

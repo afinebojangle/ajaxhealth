@@ -12,12 +12,13 @@ class Provider::ObservationsController < ApplicationController
   def create
     @course = Course[params[:course_id]]
     @observation = Observation.new(course_observation_params)
-    if @observation.save
+    if @observation.valid?
+      @observation.save
       flash[:notice] = "Observation Added."
       redirect_to provider_course_path(@course.id)
     else
-      flash[:error] = "There Was a Problem Adding an Observation. Please Try Again."
-      redirect_to provider_patient_course_path(@patient, @course)
+      flash[:validation] = @observation.errors.full_messages
+      redirect_to provider_course_path(@course)
     end
   end
   
@@ -27,8 +28,12 @@ class Provider::ObservationsController < ApplicationController
   private
   
   def course_observation_params
+    unless (params[:observation][:start_date].blank? || params[:observation][:end_date].blank?)
+      params[:observation][:start_date] = Date.strptime(params[:observation][:start_date], "%m/%d/%Y")
+      params[:observation][:end_date] = Date.strptime(params[:observation][:end_date], "%m/%d/%Y")
+    end
     params[:observation][:course_id] = @course.id
-    params.require(:observation).permit(:course_id, :patient_measure_type_id, :frequency)
+    params.require(:observation).permit(:course_id, :patient_measure_type_id, :frequency, :start_date, :end_date)
   end
   
 end
