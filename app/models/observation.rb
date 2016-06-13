@@ -42,7 +42,7 @@ class Observation < Sequel::Model
   end
   
   def measure_count
-    PatientMeasure.where(patient_measure_type_id: self.patient_measure_type_id, completed_date: self.start_date..self.end_date, patient_id: Course[self.course_id].patient_id).count
+    PatientMeasure.where(observation_id: self.id).count
   end
     
   

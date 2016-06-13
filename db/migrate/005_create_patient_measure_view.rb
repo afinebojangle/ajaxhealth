@@ -21,20 +21,19 @@ Sequel.migration do
       CREATE MATERIALIZED VIEW patient_measure_view
       AS
       SELECT a.id,
-        a.completed_date,
+        a.date,
         b.measure_type as type,
         b.description,
         a.value,
         c.uom,
         d.dob,
-        (date_part('year', a.completed_date) - date_part('year', d.dob)) as age,
+        (date_part('year', a.date) - date_part('year', d.dob)) as age,
         d.gender,
         d.race
       FROM patient_measures as a
         inner join patient_measure_types as b on (a.patient_measure_type_id = b.id)
         inner join patient_measure_units as c on (a.patient_measure_unit_id = c.id)
         inner join patients d on (a.patient_id = d.id)
-      WHERE a.completed = 'true'
       WITH NO DATA")
 
       #create_view(:patient_measure_view, view_definition, :materialized => true)

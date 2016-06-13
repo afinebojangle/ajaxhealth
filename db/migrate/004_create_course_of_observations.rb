@@ -26,6 +26,10 @@ Sequel.migration do
       DateTime :updated_at
     end
     
+    alter_table(:patient_measures) do
+      add_foreign_key :observation_id, :observations
+    end
+    
       
     
 
@@ -34,7 +38,8 @@ Sequel.migration do
   down do
     drop_table(:courses, :observations)
     
-    drop_column :measures, :course_id
+    drop_column :patient_measures, :observation_id
+    
 
   end
 end

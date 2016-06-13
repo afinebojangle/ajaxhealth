@@ -116,30 +116,6 @@ Sequel.migration do
       column :updated_at, "timestamp without time zone"
     end
     
-    create_table(:patient_measures) do
-      primary_key :id
-      column :completed_date, "date"
-      column :completed, "boolean", :default=>false
-      column :value, "double precision"
-      column :created_at, "timestamp without time zone"
-      column :updated_at, "timestamp without time zone"
-      foreign_key :patient_id, :patients, :key=>[:id]
-      foreign_key :patient_measure_type_id, :patient_measure_types, :key=>[:id]
-      foreign_key :patient_measure_unit_id, :patient_measure_units, :key=>[:id]
-    end
-    
-    create_table(:patient_tasks) do
-      primary_key :id
-      column :description, "text"
-      column :due, "date"
-      column :location, "text"
-      column :completed, "boolean", :default=>false
-      column :completed_date, "timestamp without time zone"
-      foreign_key :patient_id, :patients, :key=>[:id]
-      column :created_at, "timestamp without time zone"
-      column :updated_at, "timestamp without time zone"
-    end
-    
     create_table(:observations) do
       primary_key :id
       foreign_key :course_id, :courses, :key=>[:id]
@@ -151,16 +127,22 @@ Sequel.migration do
       column :updated_at, "timestamp without time zone"
     end
     
-    create_table(:observation_measures) do
+    create_table(:patient_measures) do
       primary_key :id
+      column :date, "date"
+      column :value, "double precision"
+      column :created_at, "timestamp without time zone"
+      column :updated_at, "timestamp without time zone"
+      foreign_key :patient_id, :patients, :key=>[:id]
+      foreign_key :patient_measure_type_id, :patient_measure_types, :key=>[:id]
+      foreign_key :patient_measure_unit_id, :patient_measure_units, :key=>[:id]
       foreign_key :observation_id, :observations, :key=>[:id]
-      foreign_key :patient_measure_id, :patient_measures, :key=>[:id]
     end
   end
 end
 Sequel.migration do
   change do
     self << "SET search_path TO \"$user\", public"
-    self << "INSERT INTO \"schema_info\" (\"version\") VALUES (7)"
+    self << "INSERT INTO \"schema_info\" (\"version\") VALUES (5)"
   end
 end

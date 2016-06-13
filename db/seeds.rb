@@ -112,8 +112,7 @@ patients.each do |p|
   
     8.times do  
       m = PatientMeasure.new(
-          completed_date:           date,
-          completed:                true,
+          date:                     date,
           value:                    rand(4..60),
           patient_id:               p,
           patient_measure_type_id:  type,

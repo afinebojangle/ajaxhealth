@@ -23,7 +23,7 @@
             </tr>
           </thead>
           <tbody>
-            <%= render partial: "provider/courses/observation", collection: @course.observations %>
+            <%= render partial: "provider/courses/observation", collection: @course.observations, locals: {patient_id: @course.patient.id} %>
           </tbody>
         </table>
       </div>

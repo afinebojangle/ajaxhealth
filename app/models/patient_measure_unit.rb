@@ -1,6 +1,8 @@
 class PatientMeasureUnit < Sequel::Model
-    #part of the EAV for patient measures, stores data about the unit of measure for patient measures.
+  #this model is part of the EAV model for patient measures
+  
     plugin :timestamps, :update_on_create => true
+    plugin :validation_helpers
     
     one_to_many :patient_measures
     

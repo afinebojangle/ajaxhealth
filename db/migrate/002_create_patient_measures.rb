@@ -3,8 +3,7 @@ Sequel.migration do
         create_table(:patient_measures) do
             primary_key :id
             
-            Date :completed_date
-            Boolean :completed, :default => false
+            Date :date
             Float :value
             
             DateTime :created_at
