@@ -7,7 +7,9 @@
     <%= f.input :patient_measure_unit_id, collection: @units, label_method: :uom, value_method: :id, label: "Unit of Measure", include_blank: false %>
     <%= f.input :date, as: :string, placeholder: "MM/DD/YYYY" %>
     <%= f.hidden_field :patient_id, value: @patient.id %>
-    <%= f.hidden_field :observation_id, value: @observation.id %>
+    <% unless @observation == nil %>
+      <%= f.hidden_field :observation_id, value: @observation.id %>
+    <% end %>
     <%= f.button :submit, "Create Patient Measure", class: "btn-danger" %>
   <% end %>
 

@@ -5,7 +5,7 @@ class Provider::PatientMeasuresController < ApplicationController
   
   def new
     @patient = Patient[params[:patient]]
-    @observation = Observation[params[:observation]]
+    if params[:observation] then @observation = Observation[params[:observation]] end
     @measure = PatientMeasure.new()
     @types = PatientMeasureType.select(:measure_type, :id).all
     @units = PatientMeasureUnit.select(:uom, :id).all
@@ -18,7 +18,7 @@ class Provider::PatientMeasuresController < ApplicationController
     if @measure.valid? 
       @measure.save
       flash[:notice] = 'Measure Created.'
-      redirect_to provider_course_path(@observation.course_id)
+      @observation == nil ? redirect_to(provider_patient_path(@patient.id)) : redirect_to(provider_course_path(@observation.course_id))
     else
       flash[:validation] = @measure.errors.full_messages
       render :new

@@ -1,5 +1,5 @@
 class PatientMeasure < Sequel::Model
-   #patient measures are the basis of our whole system. This model stores their data in 
+   #patient measures are the basis of our whole system. This model stores their data using an EAV architecture
    plugin :timestamps, :update_on_create => true
    plugin :validation_helpers
    

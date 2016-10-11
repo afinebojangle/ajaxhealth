@@ -43,7 +43,7 @@
         <div class="alert alert-danger">
           <h4>There are <%= pluralize(@observation.errors.count, "error") %>.</h4>
           <ul>
-            <% post.errors.full_messages.each do |msg| %>
+            <% @observation.errors.full_messages.each do |msg| %>
               <li><%= msg %></li>
             <% end %>
           </ul>
