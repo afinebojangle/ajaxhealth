@@ -6,13 +6,17 @@ Rails.application.routes.draw do
    
     namespace :provider do
         get '/dashboard' => 'dashboard#dashboard'
+        
         resources :patients do
             resources :courses, only: [:new, :create]
         end
+        
         resources :patient_measures, only: [:new, :create, :update]
+        
         resources :courses, only: [:show, :update] do
           resources :observations
         end
+        
         get '/account' => 'provider#account'
     end
   
@@ -24,6 +28,7 @@ Rails.application.routes.draw do
         get '/account' => 'patient#account'
         get '/edit' =>  'patient#edit'
         put '/edit' => 'patient#update'
+        get '/measures' => 'measures#index'
     end
   
   

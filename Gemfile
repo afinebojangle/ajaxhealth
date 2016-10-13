@@ -11,6 +11,7 @@ gem 'sequel-devise-generators'
 gem 'devise'
 gem 'puma'
 gem 'faker'
+gem 'chartkick'
 ruby '2.3.0'
 
 
