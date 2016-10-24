@@ -121,6 +121,7 @@ Sequel.migration do
       foreign_key :course_id, :courses, :key=>[:id]
       foreign_key :patient_measure_type_id, :patient_measure_types, :key=>[:id]
       column :frequency, "text"
+      column :goal, "text"
       column :start_date, "date"
       column :end_date, "date"
       column :created_at, "timestamp without time zone"
@@ -137,12 +138,40 @@ Sequel.migration do
       foreign_key :patient_measure_type_id, :patient_measure_types, :key=>[:id]
       foreign_key :patient_measure_unit_id, :patient_measure_units, :key=>[:id]
       foreign_key :observation_id, :observations, :key=>[:id]
+      column :measure_reason, "text"
+    end
+    
+    create_table(:patient_alerts) do
+      primary_key :id
+      column :description, "text"
+      column :requires_action, "boolean", :default=>false
+      column :compelted, "boolean", :default=>false
+      foreign_key :patient_id, :patients, :key=>[:id]
+      foreign_key :course_id, :courses, :key=>[:id]
+      foreign_key :observation_id, :observations, :key=>[:id]
+      foreign_key :patient_measure_id, :patient_measures, :key=>[:id]
+      column :created_at, "timestamp without time zone"
+      column :updated_at, "timestamp without time zone"
+    end
+    
+    create_table(:provider_alerts) do
+      primary_key :id
+      column :description, "text"
+      column :requires_action, "boolean", :default=>false
+      column :compelted, "boolean", :default=>false
+      foreign_key :provider_id, :providers, :key=>[:id]
+      foreign_key :patient_id, :patients, :key=>[:id]
+      foreign_key :course_id, :courses, :key=>[:id]
+      foreign_key :observation_id, :observations, :key=>[:id]
+      foreign_key :patient_measure_id, :patient_measures, :key=>[:id]
+      column :created_at, "timestamp without time zone"
+      column :updated_at, "timestamp without time zone"
     end
   end
 end
 Sequel.migration do
   change do
     self << "SET search_path TO \"$user\", public"
-    self << "INSERT INTO \"schema_info\" (\"version\") VALUES (5)"
+    self << "INSERT INTO \"schema_info\" (\"version\") VALUES (7)"
   end
 end

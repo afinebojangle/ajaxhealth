@@ -32,7 +32,7 @@ class Provider::PatientMeasuresController < ApplicationController
     unless params[:patient_measure][:date].blank? then params[:patient_measure][:date] = Date.strptime(params[:patient_measure][:date], "%m/%d/%Y") end
     if params[:patient] then params[:patient_measure][:patient_id] = params[:patient] end
     if params[:observation] then params[:patient_measure][:observation_id] = params[:observation] end
-    params.require(:patient_measure).permit(:date, :patient_id, :value, :patient_measure_type_id, :patient_measure_unit_id, :observation_id)
+    params.require(:patient_measure).permit(:date, :patient_id, :value, :patient_measure_type_id, :patient_measure_unit_id, :observation_id, :measure_reason)
   end
 
 

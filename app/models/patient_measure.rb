@@ -10,7 +10,13 @@ class PatientMeasure < Sequel::Model
    
    def validate
      super
-     validates_presence [:value, :patient_id, :patient_measure_type_id, :patient_measure_unit_id]
+     validates_presence [:value, :patient_id, :patient_measure_type_id, :patient_measure_unit_id, :measure_reason]
+     errors.add(:measure_reason, 'is not a valid reason') unless measure_reason.in?(PatientMeasure.allowed_reasons)
+   end
+   
+   
+   def self.allowed_reasons
+      ['Baseline', 'Interim', 'Final', 'Historical']
    end
    
 

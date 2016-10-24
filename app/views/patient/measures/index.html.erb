@@ -3,8 +3,9 @@
         <h5>Measures</h5>
     </div>
     <div class="card-block">
-        <%= simple_form_for :type, url: patient_measures_path, html: { method: :get, class: "form-inline" } do |f| %>
-          <%= f.input :type, label: "Measure Type:  ", collection: @measure_types, input_html: { name: "type" }, selected: @type %>
+        <%= simple_form_for :form, url: patient_measures_path, html: { method: :get, class: "form-inline" } do |f| %>
+          <%= f.input :type, label: "Measure Type:  ", collection: @measure_types, selected: @type %>
+          <%# f.input :age, as: :boolean, label: "Show Age Peer Average" %>
           <%= f.button :submit, "Get Measures", class: "btn btn-danger" %>
         <% end %>
         
