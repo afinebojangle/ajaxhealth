@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
     
-    devise_for :patients, controllers: { sessions: 'patients/sessions', registrations: 'patients/registrations' }
+    devise_for :patients, controllers: { sessions: 'patients/sessions',
+                                         registrations: 'patients/registrations',
+                                         confirmations: 'patients/confirmations',
+                                         passwords: 'patients/passwords',
+                                         unlocks: 'patients/unlocks'}
+    
     devise_for :providers
     
    

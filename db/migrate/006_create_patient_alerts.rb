@@ -5,7 +5,7 @@ Sequel.migration do
       
       String :description
       Boolean :requires_action, :default => false
-      Boolean :compelted, :default => false
+      Boolean :completed, :default => false
       
       foreign_key :patient_id, :patients
       foreign_key :course_id, :courses
