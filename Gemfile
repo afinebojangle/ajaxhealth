@@ -12,6 +12,7 @@ gem 'devise'
 gem 'puma'
 gem 'faker'
 gem 'chartkick'
+gem 'sidekiq'
 ruby '2.3.0'
 
 

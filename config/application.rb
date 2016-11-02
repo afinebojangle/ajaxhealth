@@ -32,5 +32,8 @@ module Ajaxhealth
     # config.i18n.default_locale = :de
     
     config.autoload_paths << Rails.root.join('lib')
+    
+    config.active_job.queue_adapter = :sidekiq
+    
   end
 end
